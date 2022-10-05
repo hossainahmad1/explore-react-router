@@ -16,11 +16,18 @@ function App() {
         { path: '/', element: <Home></Home> },
         { path: 'home', element: <Home></Home> },
         { path: 'product', element: <Product></Product> },
-        { path: 'login', element: <Login></Login> },
+        {
+          path: 'login',
+          loader: async () => {
+            return fetch('https://jsonplaceholder.typicode.com/users');
+          },
+          element: <Login></Login>
+        },
       ]
     },
 
     { path: 'about', element: <About></About> },
+    { path: '*', element: <div>This route not found:404</div> }
 
   ]);
   return (
